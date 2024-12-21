@@ -138,7 +138,7 @@ const Navbar = () => {
         </Links>
         <Icons>
           <Icon src="./img/search.png" />
-          <Button>Hire Now</Button>
+          <Button>Gallery</Button>
         </Icons>
       </Container>
     </Section>
