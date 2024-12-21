@@ -35,19 +35,19 @@ const Links = styled.div`
     align-items: center;
     gap: 20px;
     width: 100%;
-    height: 20vh;
+    height: 30vh;
     position: absolute;
     top: 60px; /* Adjust based on navbar height */
     left: 0;
     background-color: black;
     z-index: 100;
     opacity: ${(props) => (props.isOpen ? "1" : "0")};
-    transform: ${(props) => (props.isOpen ? "translateY(0)" : "translateY(-20px)")};
+    transform: ${(props) =>
+      props.isOpen ? "translateY(0)" : "translateY(-20px)"};
     pointer-events: ${(props) => (props.isOpen ? "auto" : "none")};
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
 `;
-
 
 const Logo = styled.img`
   height: 50px;
@@ -61,6 +61,8 @@ const List = styled.ul`
   display: flex;
   gap: 20px;
   list-style: none;
+  width: 400px;
+  background: black;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -71,6 +73,15 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  
+  &:hover {
+    color: #FF7518; 
+    /* font-size: 20px;  */
+    letter-spacing: 6px;
+    border-bottom: 2px solid #FF7518; /* Thin border under the item */
+  }
 
   @media (max-width: 768px) {
     font-size: 14px;
@@ -101,7 +112,7 @@ const Icon = styled.img`
 const Button = styled.button`
   width: 100px;
   padding: 10px;
-  background-color: #FF7518;
+  background-color: #ff7518;
   color: white;
   border: none;
   border-radius: 5px;
@@ -135,21 +146,45 @@ const Navbar = () => {
     <Section>
       <Container>
         {/* <Logo src="./img/logo.png" /> */}
-        <Hamburger onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />} {/* Hamburger Icon */}
-        </Hamburger>
+
+        {/* Hamburger icon - shown when menu is closed */}
+        {!isOpen && (
+          <Hamburger onClick={toggleMenu}>
+            <FaBars />
+          </Hamburger>
+        )}
+
+        {/* Links container */}
         <Links isOpen={isOpen}>
           <List>
             <ListItem>Home</ListItem>
+            {/* Additional icons shown only when menu is open */}
+            {isOpen && (
+              <Icons>
+                {/* <Icon src="./img/search.png" /> */}
+                <Button>Gallery</Button>
+              </Icons>
+            )}
             <ListItem>Studio</ListItem>
             <ListItem>Works</ListItem>
             <ListItem>Contact</ListItem>
+
+            {/* Close Hamburger icon - shown only when menu is open */}
+            {isOpen && (
+              <Hamburger onClick={toggleMenu}>
+                <FaTimes />
+              </Hamburger>
+            )}
           </List>
         </Links>
-        <Icons>
-          <Icon src="./img/search.png" />
-          <Button>Gallery</Button>
-        </Icons>
+
+        {/* Icons shown when menu is closed */}
+        {!isOpen && (
+          <Icons>
+            {/* <Icon src="./img/search.png" /> */}
+            <Button>Gallery</Button>
+          </Icons>
+        )}
       </Container>
     </Section>
   );

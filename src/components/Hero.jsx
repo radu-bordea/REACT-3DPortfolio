@@ -70,6 +70,7 @@ const WhatWeDo = styled.div`
 `;
 
 const Line = styled.img`
+  margin: 10px;
   height: 5px;
 
   @media (max-width: 1024px) {
@@ -81,8 +82,8 @@ const Line = styled.img`
   }
 `;
 
-const Subtitle = styled.h2`
-  color: #FF7518;
+const Subtitle = styled.span`
+  color: #ff7518;
 `;
 
 const Desc = styled.p`
@@ -99,7 +100,7 @@ const Desc = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: #FF7518;
+  background-color: #ff7518;
   color: white;
   font-weight: 500px;
   width: 100px;
@@ -168,13 +169,13 @@ const Hero = () => {
       <Navbar />
       <Container>
         <Left>
-          <Title>RaduBordea</Title>
-          <WhatWeDo>
+          <Title>
+            RaduBordea
             <Line src="./img/line.png" />
             <Subtitle>Official</Subtitle>
-          </WhatWeDo>
+          </Title>
           <Desc>Lifestyle, Fitness, Modeling</Desc>
-          <Button>Learn More</Button>
+          {/* <Button>Learn More</Button> */}
         </Left>
         <Right>
           {/* 3d model */}

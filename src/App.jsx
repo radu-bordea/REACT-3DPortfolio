@@ -1,5 +1,6 @@
 import styled from "styled-components"; // Ensure styled-components is imported
 import Hero from "./components/Hero";
+import Gallery from './components/Gallery'
 import Who from "./components/Who";
 import Works from "./components/Works";
 import Contact from "./components/Contact";
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <Container>
       <Hero />
+      <Gallery/>
       <Who />
       <Works />
       <Contact />
