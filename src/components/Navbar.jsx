@@ -35,9 +35,19 @@ const Links = styled.div`
     align-items: center;
     gap: 20px;
     width: 100%;
-    display: ${(props) => (props.isOpen ? "flex" : "none")};
+    height: 20vh;
+    position: absolute;
+    top: 60px; /* Adjust based on navbar height */
+    left: 0;
+    background-color: black;
+    z-index: 100;
+    opacity: ${(props) => (props.isOpen ? "1" : "0")};
+    transform: ${(props) => (props.isOpen ? "translateY(0)" : "translateY(-20px)")};
+    pointer-events: ${(props) => (props.isOpen ? "auto" : "none")};
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
 `;
+
 
 const Logo = styled.img`
   height: 50px;
