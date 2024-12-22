@@ -24,7 +24,7 @@ const App = () => {
   return (
     <Container>
       <Hero />
-      <Gallery/>
+      {/* <Gallery/> */}
       <Who />
       <Works />
       <Contact />
