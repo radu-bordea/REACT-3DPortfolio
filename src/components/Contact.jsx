@@ -1,3 +1,5 @@
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 import Map from "./Map";
 
@@ -19,6 +21,9 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -30,20 +35,24 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  @media only screen and (max-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const Input = styled.input`
   padding: 20px;
+  background-color: #e8e6e6;
   border: none;
   border-radius: 5px;
-  background-color: #f1f1f1;
 `;
 
 const TextArea = styled.textarea`
   padding: 20px;
   border: none;
   border-radius: 5px;
-  background-color: #f1f1f1;
+  background-color: #e8e6e6;
 `;
 
 const Button = styled.button`
@@ -58,19 +67,53 @@ const Button = styled.button`
 
 const Right = styled.div`
   flex: 1;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Contact = () => {
+  const ref = useRef();
+  const [success, setSuccess] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        ref.current,
+        import.meta.env.VITE_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setSuccess(true);
+        },
+        (error) => {
+          console.log(error.text);
+          setSuccess(false);
+        }
+      );
+  };
   return (
     <Section>
       <Container>
         <Left>
-          <Form>
+          <Form ref={ref} onSubmit={handleSubmit}>
             <Title>Contact Us</Title>
-            <Input placeholder="Name" />
-            <Input placeholder="Email" />
-            <TextArea placeholder="Write your message" rows={10} />
-            <Button>Send</Button>
+            <Input placeholder="Name" name="name" />
+            <Input placeholder="Email" name="email" />
+            <TextArea
+              placeholder="Write your message"
+              name="message"
+              rows={10}
+            />
+            <Button type="submit">Send</Button>
+            {success &&
+              "Your message has been sent. We'll get back to you soon..."}
           </Form>
         </Left>
         <Right>
