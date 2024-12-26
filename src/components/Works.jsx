@@ -1,6 +1,10 @@
+import { forwardRef, useState } from "react";
 import styled from "styled-components";
+import Fitness from "./Fitness";
+import Diet from "./Diet";
+import Hobbies from "./Hobbies";
 
-const data = ["Fitness", "Diet", "Rest", "Hobbies", "Development"];
+const data = ["Fitness", "Diet", "Hobbies"];
 
 const Section = styled.div`
   height: 100vh;
@@ -35,9 +39,8 @@ const ListItem = styled.li`
   color: transparent;
   -webkit-text-stroke: 1px white;
   position: relative;
- 
 
-  &:hover{
+  &:hover {
     color: #ff7518;
     letter-spacing: 3px;
   }
@@ -47,21 +50,33 @@ const Right = styled.div`
   flex: 1;
 `;
 
-const Works = () => {
+const Works = forwardRef((props,ref) => {
+  const [work, setWork] = useState("Fitness");
+
   return (
-    <Section>
+    <Section ref={ref}>
       <Container>
         <Left>
           <List>
             {data.map((item) => (
-              <ListItem key={item}>{item}</ListItem>
+              <ListItem key={item} onClick={()=>setWork(item)}>
+                {item}
+              </ListItem>
             ))}
           </List>
         </Left>
-        <Right></Right>
+        <Right>
+          {work === "Fitness" ? (
+            <Fitness />
+          ) : work === "Diet" ? (
+            <Diet />
+          ) : (
+            <Hobbies />
+          )}
+        </Right>
       </Container>
     </Section>
   );
-};
+});
 
 export default Works;

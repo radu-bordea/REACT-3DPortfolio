@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import styled from "styled-components";
 import Map from "./Map";
@@ -73,8 +73,9 @@ const Right = styled.div`
   }
 `;
 
-const Contact = () => {
-  const ref = useRef();
+// Fix: Forward ref to the Section and also pass ref for the form submission
+const Contact = forwardRef((props, ref) => {
+  const refSubmit = useRef();
   const [success, setSuccess] = useState(null);
 
   const handleSubmit = (e) => {
@@ -84,7 +85,7 @@ const Contact = () => {
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
-        ref.current,
+        refSubmit.current,
         import.meta.env.VITE_PUBLIC_KEY
       )
       .then(
@@ -98,19 +99,17 @@ const Contact = () => {
         }
       );
   };
+
   return (
-    <Section>
+    <Section ref={ref}>
       <Container>
         <Left>
-          <Form ref={ref} onSubmit={handleSubmit}>
-            <Title>Contact Us</Title>
+          {/* Correct the usage of ref */}
+          <Form ref={refSubmit} onSubmit={handleSubmit}>
+            <Title>Contact Me</Title>
             <Input placeholder="Name" name="name" />
             <Input placeholder="Email" name="email" />
-            <TextArea
-              placeholder="Write your message"
-              name="message"
-              rows={10}
-            />
+            <TextArea placeholder="Write your message" name="message" rows={10} />
             <Button type="submit">Send</Button>
             {success &&
               "Your message has been sent. We'll get back to you soon..."}
@@ -122,6 +121,6 @@ const Contact = () => {
       </Container>
     </Section>
   );
-};
+});
 
 export default Contact;

@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import Cube from "./Cube";
+import { forwardRef } from "react";
 
 const Section = styled.div`
   height: 100vh;
@@ -62,23 +66,37 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Who = () => {
+const Who = forwardRef((props, ref) => {
   return (
-    <Section>
+    <Section ref={ref}>
       <Container>
-        <Left>{/* 3d model */}</Left>
+        <Left>
+          <Canvas camera={{ fov: 25, position: [5, 5, 5] }}>
+            <OrbitControls enableZoom={false} autoRotate />
+            <ambientLight intensity={1} />
+            <directionalLight position={[5, 2, 1]} />
+            <Cube />
+          </Canvas>
+        </Left>
         <Right>
-          <Title>Think. Make. Solve.</Title>
+          <Title>Adapt. Inspire. Grow.</Title>
+
           <WhatWeDo>
             <Line src="./img/line.png" />
-            <Subtitle>Official</Subtitle>
+            <Subtitle>Believe</Subtitle>
           </WhatWeDo>
-          <Desc>Lifestyle, Fitness, Modeling</Desc>
-          <Button>Learn More </Button>
+          <Desc>
+            <Desc>
+              Passionate about fitness, healthy living, and self-development. I
+              enjoy cycling, running, and walking. A coding enthusiast who loves
+              building websites. Always eager to learn, grow, and share
+              knowledge with others.
+            </Desc>
+          </Desc>
         </Right>
       </Container>
     </Section>
   );
-};
+});
 
 export default Who;

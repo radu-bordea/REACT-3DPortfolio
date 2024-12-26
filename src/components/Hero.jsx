@@ -1,5 +1,5 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar";
 
 // Section component styles the main wrapper with full-screen height and snapping alignment
 const Section = styled.div`
@@ -62,7 +62,7 @@ const Desc = styled.p`
 const Button = styled.button`
   background-color: #ff7518;
   color: white;
-  font-weight: 500px;
+  font-weight: 500;
   width: 100px;
   padding: 10px;
   border: none;
@@ -81,7 +81,7 @@ const Right = styled.div`
 
 // Img component styles the main image, includes animation for floating effect
 const Img = styled.img`
-  width: 500px;
+  width: 400px;
   object-fit: contain;
   position: absolute;
   top: 0;
@@ -90,20 +90,12 @@ const Img = styled.img`
   right: 0;
   margin: auto;
   animation: animate 2s infinite ease alternate;
-
-  // Keyframe animation to create a floating effect
-  @keyframes animate {
-    100% {
-      transform: translateY(20px);
-    }
-  }
 `;
 
 // Hero component structure that combines Navbar, Left, and Right sections
-const Hero = () => {
+const Hero = forwardRef((props, ref) => {
   return (
-    <Section>
-      <Navbar /> {/* Navigation bar */}
+    <Section ref={ref}>
       <Container>
         <Left>
           {/* Title and branding section */}
@@ -112,17 +104,14 @@ const Hero = () => {
             <Line src="./img/line.png" />
             <Subtitle>Official</Subtitle>
           </Title>
-          {/* Description and call-to-action button */}
           <Desc>Lifestyle, Fitness, Modeling</Desc>
-          <Button>Learn More</Button>
         </Left>
         <Right>
-          {/* Placeholder for a 3D model */}
           <Img src="./img/2.png" />
         </Right>
       </Container>
     </Section>
   );
-};
+});
 
 export default Hero;

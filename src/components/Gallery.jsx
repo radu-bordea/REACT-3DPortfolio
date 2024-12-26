@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 // Section container
@@ -57,13 +57,12 @@ const GalleryContainer = styled.div`
 
 // Individual image styling
 const Img = styled.img`
-
   height: 500px; /* Adjust height for better aspect ratio */
   object-fit: cover; /* Ensure the image fully covers the area */
   border-radius: 10px; /* Optional: Add rounded corners */
 `;
 
-const Gallery = () => {
+const Gallery = forwardRef((props, ref) => {
   const images = [
     "./img/1.png",
     "./img/2.png",
@@ -74,11 +73,10 @@ const Gallery = () => {
     "./img/7.png",
     "./img/8.png",
     "./img/9.jpg",
-    // Add more images here if needed
   ];
 
   return (
-    <Section>
+    <Section ref={ref}>
       <GalleryContainer>
         {images.map((image, index) => (
           <Img key={index} src={image} alt={`Gallery Image ${index + 1}`} />
@@ -86,6 +84,6 @@ const Gallery = () => {
       </GalleryContainer>
     </Section>
   );
-};
+});
 
 export default Gallery;
