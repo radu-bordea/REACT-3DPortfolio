@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-// Section container
 const Section = styled.div`
   height: 100vh;
   scroll-snap-align: center;
@@ -10,56 +9,48 @@ const Section = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  width: 100%; /* Full width */
+  width: 100%;
 `;
 
-// Gallery container using flex for alignment
 const GalleryContainer = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
-  max-width: 1400px; /* Limit the width to 1400px */
-  overflow-x: auto; /* Allow horizontal scrolling */
-  padding-bottom: 10px; /* Optional: Add some space below the scroll */
-  box-sizing: border-box; /* Ensure padding does not cause overflow */
-  scrollbar-width: thin; /* Firefox - makes the scrollbar thinner */
-  scrollbar-color: #ff7518 #e0e0e0; /* Firefox - scrollbar color (thumb and track) */
+  max-width: 1400px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #ff7518 #e0e0e0;
+  scroll-behavior: smooth;
 
-  /* Customizing scrollbar for Webkit browsers (Chrome, Safari) */
   ::-webkit-scrollbar {
-    height: 8px; /* Set height for horizontal scroll */
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f0f0f0; /* Track color */
+    background: #f0f0f0;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #ff7518; /* Thumb color */
-    border-radius: 4px; /* Rounded thumb */
+    background-color: #ff7518;
+    border-radius: 4px;
   }
 
-  /* Smooth scrolling */
-  scroll-behavior: smooth;
-
   @media (max-width: 1024px) {
-    /* 2 columns for tablet */
-    flex-wrap: nowrap; /* No wrapping, all items stay in a single row */
     justify-content: flex-start;
   }
 
   @media (max-width: 768px) {
-    /* 1 column for mobile */
-    flex-wrap: nowrap;
     justify-content: flex-start;
   }
 `;
 
-// Individual image styling
 const Img = styled.img`
-  height: 500px; /* Adjust height for better aspect ratio */
-  object-fit: cover; /* Ensure the image fully covers the area */
-  border-radius: 10px; /* Optional: Add rounded corners */
+  height: 200px; /* Adjusted for better mobile display */
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0; /* Prevent shrinking inside a flex container */
 `;
 
 const Gallery = forwardRef((props, ref) => {

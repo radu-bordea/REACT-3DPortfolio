@@ -14,15 +14,21 @@ const Section = styled.div`
 `;
 
 const Container = styled.div`
-  width: 1400px;
   display: flex;
   justify-content: space-between;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+
 `;
 
 const List = styled.ul`
@@ -30,27 +36,38 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const ListItem = styled.li`
-  font-size: 70px;
   font-weight: bold;
   cursor: pointer;
   color: transparent;
   -webkit-text-stroke: 1px white;
   position: relative;
+  font-size: 36px;
 
   &:hover {
     color: #ff7518;
     letter-spacing: 3px;
   }
+
+  @media only screen and (max-width: 768px) {
+    color: white;
+    font-size: 24px;
+    -webkit-text-stroke: 0px;
+  }
 `;
 
 const Right = styled.div`
-  flex: 1;
+  flex: 3;
+
 `;
 
-const Works = forwardRef((props,ref) => {
+const Works = forwardRef((props, ref) => {
   const [work, setWork] = useState("Fitness");
 
   return (
@@ -59,7 +76,7 @@ const Works = forwardRef((props,ref) => {
         <Left>
           <List>
             {data.map((item) => (
-              <ListItem key={item} onClick={()=>setWork(item)}>
+              <ListItem key={item} onClick={() => setWork(item)}>
                 {item}
               </ListItem>
             ))}

@@ -1,45 +1,57 @@
 import React from "react";
 import styled from "styled-components";
 
-// Section component styles the main wrapper to center its content
 const Section = styled.div`
   display: flex;
   justify-content: center;
-  position: fixed;  /* Keep the navbar fixed */
-  top: 0;           /* Place it at the top */
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;      /* Full width */
-  background: rgba(0, 0, 0); /* Optional: add a translucent background */
-  z-index: 9999;    /* Make sure it's above other content */
+  width: 100%;
+  background: rgba(0, 0, 0);
+  z-index: 9999;
+  
+  @media only screen and (max-width:768px) {
+    width: 100%;
+    display: none;
+  }
 `;
 
-// Container component organizes its children horizontally and adds padding
 const Container = styled.div`
   width: 1400px;
+  height: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  padding: 50px 50px;
+
+  @media only screen and (max-width:768px) {
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
-// Links component groups navigation links and the logo
 const Links = styled.div`
   display: flex;
   align-items: center;
-  gap: 50px; // Space between elements
 `;
 
-// List component styles the navigation menu
 const List = styled.ul`
   display: flex;
-  gap: 20px; // Space between list items
+  gap: 20px;
   list-style: none;
+
+  @media only screen and (max-width:768px) {
+    flex-direction: column;
+    
+  }
 `;
 
-// ListItem component styles each navigation menu item
 const ListItem = styled.li`
   font-size: 24px;
-  cursor: pointer; // Add a pointer cursor for interactivity
+  cursor: pointer;
   &:hover {
     border-bottom: 1px solid #ff7518;
   }

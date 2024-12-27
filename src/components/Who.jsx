@@ -21,10 +21,18 @@ const Container = styled.div`
 
 const Left = styled.div`
   flex: 1;
+
+  @media only screen and (max-width:768px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 48px;
+
+  @media only screen and (max-width:768px) {
+    font-size: 36px;
+  }
 `;
 
 const Right = styled.div`
@@ -33,6 +41,11 @@ const Right = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+
+  @media only screen and (max-width:768px) {
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 const WhatWeDo = styled.div`
@@ -51,20 +64,18 @@ const Subtitle = styled.span`
 `;
 
 const Desc = styled.p`
-  font-size: 24px;
-  color: lightgray;
+  font-size: 20px;
+  color: lightcyan;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+    padding: 16px;
+  }
 `;
 
-const Button = styled.button`
-  background-color: #ff7518;
-  color: white;
-  font-weight: 500px;
-  width: 120px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-`;
 
 const Who = forwardRef((props, ref) => {
   return (

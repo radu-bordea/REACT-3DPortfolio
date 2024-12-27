@@ -2,16 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const Section = styled.div`
-  height: 70vh;
-  width: 40vw;
+height: 70vh;
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
-  padding: 50px;
+  padding: 30px;
   border-left: 1px solid white;
   margin: 50px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    border-left: 0px;
+    text-align: center;
+    padding: 0;
+  }
 `;
 
 const Title = styled.div`
@@ -21,6 +26,10 @@ const Title = styled.div`
   font-weight: 300;
   letter-spacing: 2px;
   margin-bottom: 10px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 const Text = styled.div`
@@ -29,6 +38,10 @@ const Text = styled.div`
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   letter-spacing: 2px;
   margin-bottom: 12px;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Fitness = () => {
