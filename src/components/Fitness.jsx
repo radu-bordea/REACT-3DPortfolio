@@ -1,79 +1,72 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"; 
+import styled from "styled-components"; 
 
+// Section styled-component: Defines the layout and styles for the container
 const Section = styled.div`
-height: 70vh;
-  scroll-snap-align: center;
-  display: flex;
-  justify-content: center;
-  padding: 30px;
-  border-left: 1px solid white;
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
+  scroll-snap-align: center; // Ensures smooth scrolling alignment
+  display: flex; // Flexbox for flexible layout
+  justify-content: center; // Centers content horizontally
+  padding: 30px; // Adds padding around the content
+  border-left: 1px solid white; // Adds a left border with a white color
+  display: flex; // Re-declares flex display
+  flex-direction: column; // Arranges items vertically
 
   @media screen and (max-width: 768px) {
-    border-left: 0px;
-    text-align: center;
-    padding: 0;
+    border-left: 0px; // Removes left border on smaller screens
+    text-align: center; // Centers text for better readability on mobile
+    padding: 0; // Removes padding on smaller screens
   }
 `;
 
+// Title styled-component: Defines the appearance of the title
 const Title = styled.div`
-  font-size: 36px;
-  color: #f7c09b;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+  font-size: 36px; // Sets font size for large screens
+  color: #f7c09b; // Defines a light peach color for the text
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; // Sets a serif font family
+  font-weight: 300; // Uses a light font weight
+  letter-spacing: 2px; // Adds space between letters
+  margin-bottom: 10px; // Adds space below the title
 
   @media only screen and (max-width: 768px) {
-    font-size: 24px;
+    font-size: 24px; // Reduces font size on smaller screens
   }
 `;
 
+// Text styled-component: Defines the appearance of the body text
 const Text = styled.div`
-  font-size: 20px;
-  color: lightcyan;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
+  font-size: 20px; // Sets the font size for normal screens
+  color: lightcyan; // Sets the text color to light cyan
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; // Uses the same serif font
+  letter-spacing: 2px; // Adds spacing between letters
+  margin-bottom: 12px; // Adds space below the text
 
   @media only screen and (max-width: 768px) {
-    font-size: 16px;
+    font-size: 16px; // Reduces font size for smaller screens
   }
 `;
 
+// Fitness component: Displays a section about the user's fitness routine
 const Fitness = () => {
   return (
     <Section>
-      <Title>Fitness</Title>
+      <Title>Fitness</Title> {/* Title of the fitness section */}
       <Text>
-        Over the past six years, I’ve developed a consistent and effective
-        fitness routine that adapts to the seasons.
-      </Text>
+        I’ve developed a consistent fitness routine over the past six years,
+        adapting to seasonal changes.
+      </Text> {/* Describes the user's overall fitness approach */}
       <Text>
-        During the cold months, I hit the gym six days a week, focusing on two
-        muscle groups per workout. I train each muscle group twice a week, and
-        every session lasts about 45 minutes.
-      </Text>
+        In winter, I train at the gym six days a week, focusing on two muscle
+        groups per session, with 45-minute workouts.
+      </Text> {/* Describes the user's winter gym routine */}
       <Text>
-        My weekly schedule runs from Monday to Saturday, with Sunday reserved as
-        my rest day to recover and recharge.
-      </Text>
+        Summers are for outdoor calisthenics—pull-ups, push-ups, and core
+        exercises—while enjoying the sunshine.
+      </Text> {/* Describes the user's summer calisthenics routine */}
       <Text>
-        {" "}
-        When the weather warms up, I take my workouts outside and switch to a
-        lighter, more functional approach. I focus on calisthenics, doing lots
-        of pull-ups, push-ups, and core exercises. These outdoor sessions allow
-        me to stay active while enjoying the fresh air and sunshine.
-      </Text>
-      <Text>
-        This seasonal approach has helped me stay consistent, build strength,
-        and maintain a balanced fitness routine year-round.
-      </Text>
+        This approach keeps me consistent, strong, and balanced year-round.
+      </Text> {/* Summarizes the benefits of this fitness routine */}
     </Section>
   );
 };
 
-export default Fitness;
+export default Fitness; // Exports the Fitness component for use in other parts of the application

@@ -1,3 +1,4 @@
+
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
@@ -8,24 +9,26 @@ const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10%; /* 10% padding for the gallery page */
   width: 100%;
+  box-sizing: border-box;
 `;
 
 const GalleryContainer = styled.div`
-  display: flex;
+  display: grid;
   gap: 20px;
   width: 100%;
-  max-width: 1400px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  box-sizing: border-box;
+  height: 100%;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+  grid-auto-rows: 1fr; /* Equal row height on desktop */
+  overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #ff7518 #e0e0e0;
   scroll-behavior: smooth;
 
   ::-webkit-scrollbar {
-    height: 8px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
@@ -37,33 +40,41 @@ const GalleryContainer = styled.div`
     border-radius: 4px;
   }
 
-  @media (max-width: 1024px) {
-    justify-content: flex-start;
-  }
-
   @media (max-width: 768px) {
-    justify-content: flex-start;
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    grid-template-rows: repeat(3, 1fr); /* 3 rows of equal height */
+    height: 100%; /* Full height on mobile */
   }
 `;
+
+
 
 const Img = styled.img`
-  height: 200px; /* Adjusted for better mobile display */
-  object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0; /* Prevent shrinking inside a flex container */
+  width: 100%; /* Fills the width of the grid cell */
+  height: 100%; /* Fills the height of the grid cell */
+  object-fit: cover; /* Prevents distortion */
+  border-radius: 10px; /* Rounded corners */
 `;
+
+
 
 const Gallery = forwardRef((props, ref) => {
   const images = [
-    "./img/1.png",
-    "./img/2.png",
-    "./img/3.png",
+    "./img/1.jpg",
+    "./img/2.jpg",
+    "./img/3.jpg",
     "./img/4.png",
     "./img/5.png",
     "./img/6.png",
     "./img/7.png",
     "./img/8.png",
-    "./img/9.jpg",
+    "./img/9.png",
+    "./img/10.png",
+    "./img/11.png",
+    "./img/12.png",
+    "./img/13.jpg",
+    "./img/14.jpg",
+    "./img/15.jpg",
   ];
 
   return (
