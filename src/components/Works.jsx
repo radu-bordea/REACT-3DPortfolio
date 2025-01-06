@@ -1,8 +1,6 @@
-import { forwardRef, useState } from "react"; 
-import styled from "styled-components"; 
-import Fitness from "./Fitness"; 
-import Diet from "./Diet"; 
-import Hobbies from "./Hobbies"; 
+import { forwardRef, useState } from "react";
+import styled from "styled-components";
+import { Fitness, Diet, Hobbies } from "./Work";
 
 // Array to store the categories (Fitness, Diet, Hobbies)
 const data = ["Fitness", "Diet", "Hobbies"];
@@ -13,16 +11,19 @@ const Section = styled.div`
   scroll-snap-align: center; // Ensures the section aligns in the viewport when scrolling
   display: flex;
   justify-content: center; // Centers the content horizontally
+  align-items: center; // Centers the content vertically
 `;
 
 // Container for the left and right sections with responsive layout
 const Container = styled.div`
   display: flex;
   justify-content: space-between; // Space out the left and right sections
+  width: 100%;
+  max-width: 1200px; // Limit the maximum width of the container
 
   @media only screen and (max-width: 768px) {
-    width: 100%;
     flex-direction: column; // Stack sections vertically on smaller screens
+    align-items: center; // Center align on smaller screens
   }
 `;
 
@@ -72,10 +73,14 @@ const ListItem = styled.li`
 // Right section where the selected content (Fitness, Diet, Hobbies) will be rendered
 const Right = styled.div`
   flex: 3;
-  padding-top: 10%; // Add padding to the top to offset content
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Center content vertically
+  align-items: center;
+  height: 100%; // Ensure consistent height
+  padding: 10% 0; // Add padding to the top and bottom
 
   @media only screen and (max-width: 768px) {
-    padding-top: 0px; // Remove top padding on smaller screens
     padding: 0 10%; // Add left and right padding on mobile
   }
 `;
@@ -85,7 +90,9 @@ const Works = forwardRef((props, ref) => {
   const [work, setWork] = useState("Fitness"); // Default category is Fitness
 
   return (
-    <Section ref={ref}> {/* Forwarding the ref to the Section element */}
+    <Section ref={ref}>
+      {" "}
+      {/* Forwarding the ref to the Section element */}
       <Container>
         <Left>
           {/* List of categories to switch between */}
@@ -112,4 +119,4 @@ const Works = forwardRef((props, ref) => {
   );
 });
 
-export default Works; // Export the Works component
+export default Works;

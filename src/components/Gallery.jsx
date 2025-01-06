@@ -1,4 +1,3 @@
-
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
@@ -6,29 +5,27 @@ const Section = styled.div`
   height: 100vh;
   scroll-snap-align: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10%; /* 10% padding for the gallery page */
+  padding: 10%; /* Adjust padding for the gallery page */
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden; /* Prevent scrolling on the outer container */
 `;
 
 const GalleryContainer = styled.div`
-  display: grid;
+  display: flex; /* Use flexbox for horizontal scrolling */
   gap: 20px;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
-  grid-auto-rows: 1fr; /* Equal row height on desktop */
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: auto; /* Width adapts based on content */
+  height: 100%; /* Full height of the viewport */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Disable vertical scrolling */
+  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #ff7518 #e0e0e0;
-  scroll-behavior: smooth;
 
   ::-webkit-scrollbar {
-    width: 8px;
+    height: 8px; /* Horizontal scrollbar height */
   }
 
   ::-webkit-scrollbar-track {
@@ -41,22 +38,28 @@ const GalleryContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* 1 column on mobile */
-    grid-template-rows: repeat(3, 1fr); /* 3 rows of equal height */
-    height: 100%; /* Full height on mobile */
+    height: 100%; /* Maintain full height on mobile */
   }
 `;
 
-
-
-const Img = styled.img`
-  width: 100%; /* Fills the width of the grid cell */
-  height: 100%; /* Fills the height of the grid cell */
-  object-fit: cover; /* Prevents distortion */
-  border-radius: 10px; /* Rounded corners */
+const ImgContainer = styled.div`
+  flex: 0 0 calc(33.33% - 20px); /* Each image takes 1/3 of the viewport width minus the gap */
+  height: 100%; /* Full height of the viewport */
+  @media (max-width: 768px) {
+    flex: 0 0 100%; /* Each image takes full width on mobile */
+  }
 `;
 
-
+const Img = styled.img`
+  width: 100%; /* Fills the container width */
+  height: 100%; /* Fills the container height */
+  object-fit: cover; /* Prevents distortion */
+  border-radius: 10px; /* Rounded corners */
+  @media (max-width: 768px) {
+  margin-top: 40%;
+    height: 70%;
+  }
+`;
 
 const Gallery = forwardRef((props, ref) => {
   const images = [
@@ -81,7 +84,9 @@ const Gallery = forwardRef((props, ref) => {
     <Section ref={ref}>
       <GalleryContainer>
         {images.map((image, index) => (
-          <Img key={index} src={image} alt={`Gallery Image ${index + 1}`} />
+          <ImgContainer key={index}>
+            <Img src={image} alt={`Gallery Image ${index + 1}`} />
+          </ImgContainer>
         ))}
       </GalleryContainer>
     </Section>
